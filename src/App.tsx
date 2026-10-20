@@ -26,6 +26,34 @@ function App() {
             Bem-vindo ao Guia de Hogwarts. Explore o catálogo interativo, filtre os personagens pelas quatro Casas e salve os seus favoritos.
           </p>
         </section>
+        <section id="casas" className="mb-12">
+          <h2 className="text-2xl text-center text-title-brown font-magic tracking-wide font-bold mb-6">Casas de Hogwarts</h2>
+          <div className="flex justify-center gap-5 sm:gap-8">
+            <button type="button" className="flex flex-col items-center gap-2 group">
+              <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-title-brown bg-white/30 group-hover:bg-white/60 transition-colors overflow-hidden flex items-center justify-center p-2">
+                <img src='assets/img/grifinoria.png' alt="Brasão da Grifinória" className="w-full h-full object-contain" />              </span>
+              <span className="text-sm text-body-brown font-semibold group-hover:text-title-brown">Grifinória</span>
+            </button>
+            <button type="button" className="flex flex-col items-center gap-2 group">
+              <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-title-brown bg-white/30 group-hover:bg-white/60 transition-colors overflow-hidden flex items-center justify-center p-2">
+                <img src='/assets/img/sonserina.png' alt="Brasão da Sonserina" className="w-full h-full object-contain" />
+              </span>
+              <span className="text-sm text-body-brown font-semibold group-hover:text-title-brown">Sonserina</span>
+            </button>
+            <button type="button" className="flex flex-col items-center gap-2 group">
+              <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-title-brown bg-white/30 group-hover:bg-white/60 transition-colors overflow-hidden flex items-center justify-center p-2">
+                <img src="/assets/img/corvinal.png" alt="Brasão da Corvinal" className="w-full h-full object-contain" />
+              </span>
+              <span className="text-sm text-body-brown font-semibold group-hover:text-title-brown">Corvinal</span>
+            </button>
+            <button type="button" className="flex flex-col items-center gap-2 group">
+              <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-title-brown bg-white/30 group-hover:bg-white/60 transition-colors overflow-hidden flex items-center justify-center p-2">
+                <img src="/assets/img/lufalufa.webp" alt="Brasão da Lufa-Lufa" className="w-full h-full object-contain" />
+              </span>
+              <span className="text-sm text-body-brown font-semibold group-hover:text-title-brown">Lufa-Lufa</span>
+            </button>
+          </div>
+        </section>
       </main>
 
     </div>
