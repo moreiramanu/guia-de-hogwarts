@@ -10,6 +10,8 @@ export default {
         parchment: '#eaddc5',
         'title-brown': '#3b2314',
         'body-brown': '#5c4033',
+        card: '#f8f0dd',
+        burgundy: '#7a1f1f',
         night: '#0b1530',
         gold: '#d4af37',
         'gold-soft': '#e6c76a',

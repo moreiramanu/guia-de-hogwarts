@@ -8,7 +8,7 @@
   body {
     font-family: 'Crimson Text', serif;
     background-color: #eaddc5;
-    background-image: linear-gradient(rgba(234, 221, 197, 0.85), rgba(234, 221, 197, 0.85)), url('assets/img/mapa-do-maroto.jpg');
+    background-image: linear-gradient(rgba(234, 221, 197, 0.85), rgba(234, 221, 197, 0.85)), url('/assets/img/mapa-do-maroto.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
