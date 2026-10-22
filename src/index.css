@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --color-parchment: #eaddc5;
+  --color-title-brown: #3b2314;
+  --color-body-brown: #5c4033;
+  --color-card: #f8f0dd;
+  --color-burgundy: #7a1f1f;
+  --color-night: #0b1530;
+  --color-gold: #d4af37;
+  --color-gold-soft: #e6c76a;
+  --color-mist: #c7d0e4;
+  --font-magic: "Cinzel Decorative", serif;
+  --font-body: "Crimson Text", serif;
+}
 
 @layer base {
   body {
