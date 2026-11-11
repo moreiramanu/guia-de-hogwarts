@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import CasaBotao from './components/CasaBotao'
 import PersonagemCard from './components/PersonagemCard'
 import { casas } from './data/casas'
 import { personagens } from './data/personagens'
+import type { Tema } from './data/tipos'
 
 function App() {
   const [favoritos, setFavoritos] = useState<number[]>([])
   const [casaSelecionada, setCasaSelecionada] = useState<string | null>(null)
   const [apenasFavoritos, setApenasFavoritos] = useState(false)
+  const [tema, setTema] = useState<Tema>('claro')
 
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', tema === 'escuro')
+  }, [tema])
+
+  function alternarTema() {
+    setTema((atual) => (atual === 'claro' ? 'escuro' : 'claro'))
+  }
   function alternarFavorito(id: number) {
     setFavoritos((atual) =>
       atual.includes(id) ? atual.filter((f) => f !== id) : [...atual, id]
@@ -29,7 +38,7 @@ function App() {
 
   return (
     <div className="min-h-screen font-body p-4 md:p-8 flex flex-col">
-      <Header />
+      <Header tema={tema} onAlternarTema={alternarTema} />
 
       <main className="max-w-7xl w-full mx-auto grow">
         <section id="inicio" className="text-center mb-12 mt-4 flex flex-col items-center">

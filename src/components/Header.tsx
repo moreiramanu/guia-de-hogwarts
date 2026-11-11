@@ -1,4 +1,11 @@
-function Header() {
+import type { Tema } from '../data/tipos'
+
+type HeaderProps = {
+  tema: Tema
+  onAlternarTema: () => void
+}
+
+function Header({ tema, onAlternarTema }: HeaderProps) {
   return (
     <header className="max-w-7xl w-full mx-auto flex justify-between items-center mb-8 border-b border-title-brown/20 pb-4">
       <a href="#inicio" aria-label="Harry Potter - ir para o início">
@@ -12,8 +19,14 @@ function Header() {
       </nav>
 
       <div className="flex items-center gap-3">
-        <button type="button" aria-label="Ativar modo escuro" className="text-2xl text-title-brown hover:scale-110 transition-transform p-1 focus-visible:ring-2 focus-visible:ring-title-brown">☾</button>
-        <button type="button" aria-label="Abrir menu" className="md:hidden text-2xl text-title-brown hover:scale-105 transition-transform p-1 focus-visible:ring-2 focus-visible:ring-title-brown">☰</button>
+        <button
+  type="button"
+  aria-label={tema === 'claro' ? 'Ativar modo escuro' : 'Ativar modo claro'}
+  onClick={onAlternarTema}
+  className="text-2xl text-title-brown hover:scale-110 transition-transform p-1 focus-visible:ring-2 focus-visible:ring-title-brown"
+>
+  {tema === 'claro' ? '☾' : '☀'}
+</button>
       </div>
     </header>
   )

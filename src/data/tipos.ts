@@ -12,3 +12,4 @@ export type Personagem = {
   patrono: string
   imagem: string
 }
+export type Tema = 'claro' | 'escuro'
