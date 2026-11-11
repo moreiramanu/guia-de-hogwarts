@@ -8,7 +8,10 @@ import { personagens } from './data/personagens'
 import type { Tema } from './data/tipos'
 
 function App() {
-  const [favoritos, setFavoritos] = useState<number[]>([])
+  const [favoritos, setFavoritos] = useState<number[]>(() => {
+    const salvo = localStorage.getItem('favoritos')
+    return salvo ? JSON.parse(salvo) : []
+  })  
   const [casaSelecionada, setCasaSelecionada] = useState<string | null>(null)
   const [apenasFavoritos, setApenasFavoritos] = useState(false)
   const [tema, setTema] = useState<Tema>('claro')
@@ -16,6 +19,9 @@ function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', tema === 'escuro')
   }, [tema])
+  useEffect(() => {
+    localStorage.setItem('favoritos', JSON.stringify(favoritos))
+  }, [favoritos])
 
   function alternarTema() {
     setTema((atual) => (atual === 'claro' ? 'escuro' : 'claro'))
@@ -66,18 +72,21 @@ function App() {
         <section id="personagens">
           <div className="flex flex-wrap justify-between items-center gap-3 mb-6">
             <h2 className="text-xl sm:text-2xl lg:text-4xl text-title-brown font-magic tracking-wide font-bold">Personagens</h2>
+
             <button
               type="button"
               aria-pressed={apenasFavoritos}
               onClick={() => setApenasFavoritos((atual) => !atual)}
-              className={`border-2 text-sm lg:text-base font-bold px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-title-brown hover:bg-burgundy hover:border-burgundy hover:text-white ${
-                apenasFavoritos
-                  ? 'bg-burgundy border-burgundy text-white'
-                  : 'border-title-brown bg-card text-title-brown'
-              }`}
+              className={`border-2 text-sm lg:text-base font-bold px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-md shadow-sm transition-colors flex items-center gap-2 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-gold
+    ${apenasFavoritos
+                  ? 'bg-burgundy border-gold text-white'
+                  : 'border-title-brown bg-card text-title-brown dark:bg-[#172642] dark:border-[#C5A66A] dark:text-[#D6BD83]'
+                }
+    dark:hover:bg-[#243657] dark:hover:border-[#D6BD83]`}
             >
-              <span aria-hidden="true">♥</span> Apenas favoritos
+              ♥ Apenas favoritos
             </button>
+
           </div>
 
           {personagensVisiveis.length === 0 ? (
