@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-parchment: #eaddc5;
+  --color-title-brown: #3b2314;
+  --color-body-brown: #5c4033;
+  --color-card: #f8f0dd;
+  --color-burgundy: #7a1f1f;
+  --color-night: #0b1530;
+  --color-gold: #c5a66a;
+  --color-gold-soft: #d6bd83;
+  --color-mist: #d5ccB8;
+  --font-body: "Crimson Text", serif;
+}
+
+@layer base {
+  body {
+    font-family: 'Crimson Text', serif;
+    background-color: #eaddc5;
+    background-image: linear-gradient(rgba(234, 221, 197, 0.85), rgba(234, 221, 197, 0.85)), url('/assets/img/mapa-do-maroto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-color: #0b1530;
+    background-image: linear-gradient(rgba(11, 21, 48, 0.65),
+        rgba(11, 21, 48, 0.65)), url('/assets/img/castelo.avif');
+  }
+}
+
+.dark .text-title-brown {
+  color: #e6c76a !important;
+}
+
+.dark .text-body-brown {
+  color: #c7d0e4 !important;
+}
+
+.dark h1,
+.dark h2,
+.dark h3 {
+  color: #e6c76a;
+}
+
+.dark nav a {
+  color: #e6c76a !important;
+}
+
+.dark p {
+  color: #c7d0e4;
+}
+
+.dark header img {
+  filter: brightness(0) saturate(100%) invert(77%) sepia(47%) saturate(570%) hue-rotate(6deg) brightness(95%);
+}
+.dark .text-title-brown {
+  color: #d6bd83 !important;
+}
+
+.dark .text-body-brown {
+  color: #d5ccb8 !important;
+}
+
+.dark h1,
+.dark h2,
+.dark h3 {
+  color: #d6bd83;
+}
+
+.dark p {
+  color: #d5ccb8;
+}
