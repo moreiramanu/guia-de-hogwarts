@@ -75,11 +75,6 @@ function App() {
         <section id="personagens">
           <div className="flex flex-wrap justify-between items-center gap-3 mb-6">
             <h2 className="text-xl sm:text-2xl lg:text-4xl text-title-brown font-magic tracking-wide font-bold">Personagens</h2>
-            {carregando && (
-              <p className="text-center text-body-brown dark:text-mist text-lg font-semibold mb-12">
-                Carregando personagens...
-              </p>
-            )}
 
             <button
               type="button"
