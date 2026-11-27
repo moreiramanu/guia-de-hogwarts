@@ -4,21 +4,23 @@ import Footer from './components/Footer'
 import CasaBotao from './components/CasaBotao'
 import PersonagemCard from './components/PersonagemCard'
 import { casas } from './data/casas'
-import { personagens } from './data/personagens'
+import { usePersonagens } from './hooks/use-personagens'
 import type { Tema } from './data/tipos'
 
 function App() {
   const [favoritos, setFavoritos] = useState<number[]>(() => {
     const salvo = localStorage.getItem('favoritos')
     return salvo ? JSON.parse(salvo) : []
-  })  
+  })
   const [casaSelecionada, setCasaSelecionada] = useState<string | null>(null)
   const [apenasFavoritos, setApenasFavoritos] = useState(false)
   const [tema, setTema] = useState<Tema>('claro')
+  const { personagens, carregando, erro } = usePersonagens()
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', tema === 'escuro')
   }, [tema])
+
   useEffect(() => {
     localStorage.setItem('favoritos', JSON.stringify(favoritos))
   }, [favoritos])
@@ -26,6 +28,7 @@ function App() {
   function alternarTema() {
     setTema((atual) => (atual === 'claro' ? 'escuro' : 'claro'))
   }
+
   function alternarFavorito(id: number) {
     setFavoritos((atual) =>
       atual.includes(id) ? atual.filter((f) => f !== id) : [...atual, id]
@@ -72,6 +75,11 @@ function App() {
         <section id="personagens">
           <div className="flex flex-wrap justify-between items-center gap-3 mb-6">
             <h2 className="text-xl sm:text-2xl lg:text-4xl text-title-brown font-magic tracking-wide font-bold">Personagens</h2>
+            {carregando && (
+              <p className="text-center text-body-brown dark:text-mist text-lg font-semibold mb-12">
+                Carregando personagens...
+              </p>
+            )}
 
             <button
               type="button"
@@ -86,24 +94,37 @@ function App() {
             >
               ♥ Apenas favoritos
             </button>
-
           </div>
 
-          {personagensVisiveis.length === 0 ? (
-            <p className="text-center text-body-brown text-lg font-semibold mb-12">
-              Nenhum personagem encontrado com esses filtros.
+          {carregando && (
+            <p className="text-center text-body-brown dark:text-mist text-lg font-semibold mb-12">
+              Carregando personagens...
             </p>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
-              {personagensVisiveis.map((personagem) => (
-                <PersonagemCard
-                  key={personagem.id}
-                  personagem={personagem}
-                  favorito={favoritos.includes(personagem.id)}
-                  onFavoritar={alternarFavorito}
-                />
-              ))}
-            </div>
+          )}
+
+          {erro && (
+            <p role="alert" className="text-center text-burgundy text-lg font-semibold border-2 border-burgundy rounded-md p-4 mb-12">
+              {erro}
+            </p>
+          )}
+
+          {!carregando && !erro && (
+            personagensVisiveis.length === 0 ? (
+              <p className="text-center text-body-brown dark:text-mist text-lg font-semibold mb-12">
+                Nenhum personagem encontrado com esses filtros.
+              </p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
+                {personagensVisiveis.map((personagem) => (
+                  <PersonagemCard
+                    key={personagem.id}
+                    personagem={personagem}
+                    favorito={favoritos.includes(personagem.id)}
+                    onFavoritar={alternarFavorito}
+                  />
+                ))}
+              </div>
+            )
           )}
         </section>
       </main>
